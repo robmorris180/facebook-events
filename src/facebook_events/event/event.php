@@ -77,6 +77,7 @@ class Event
 
     public static function saveEvent($args)
     {
+
         $event = new self();
 
         $event->setId($args['id']);

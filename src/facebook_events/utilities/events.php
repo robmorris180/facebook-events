@@ -26,14 +26,14 @@ class Events
  
         for($x = 0; $x < $event_count; $x++){
 
-            $events[] = array(
+            $event = array(
                 'id'    =>  $obj['data'][$x]['id'],
                 'title' =>  $obj['data'][$x]['name'],
                 'time'  =>  $obj['data'][$x]['start_time'],
                 'cover' =>  $obj['data'][$x]['cover']['source']   
             );
 
-            Event::saveEvent($events);
+            Event::saveEvent($event);
 
         }
 
