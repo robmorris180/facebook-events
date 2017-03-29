@@ -15,7 +15,7 @@ class Event
 {
 
     /**
-     * @Id @Column(type="integer")
+     * @Id @Column(type="bigint")
      */
     protected $id;
 
@@ -33,6 +33,12 @@ class Event
      * @Column(type="string", length=255, nullable=true)
      */
     protected $event_cover;
+
+
+    public function getId()
+    {
+        $this->id = $id;
+    }
 
     public function setId($id)
     {
@@ -56,7 +62,7 @@ class Event
 
     public function setEventTime($time)
     {
-        $this->event_time = date('Y-m-d H:i:s', strtotime($time));
+        $this->event_time = new \DateTime($time);
     }
 
     public function getEventCover()
@@ -79,13 +85,15 @@ class Event
     {
 
         $event = new self();
-
         $event->setId($args['id']);
         $event->setEventTitle($args['title']);
         $event->setEventTime($args['time']);
         $event->setEventCover($args['cover']);
-
+        
         $event->save();
+
+        return $event; 
+
     }
 
     public function save()

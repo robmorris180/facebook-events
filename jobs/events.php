@@ -1,6 +1,6 @@
 <?php
 namespace Concrete\Package\RwmFacebookEvents\Job;
-use \Concrete\Package\RwmFacebookEvents\Src\FacebookEvents\Utilities\Events as EventListings;
+use \Concrete\Package\RwmFacebookEvents\Src\FacebookEvents\Utilities\EventListings;
 use \Concrete\Core\Job\Job as AbstractJob;
 
 class Events extends AbstractJob

@@ -1,9 +1,9 @@
 <?php
 namespace Concrete\Package\RwmFacebookEvents\Src\FacebookEvents\Utilities;
-use Concrete\Package\RwmFacebookEvents\Src\FacebookEvents\Event;
+use Concrete\Package\RwmFacebookEvents\Src\FacebookEvents\Event\Event;
 use Config;
 
-class Events
+class EventListings
 {
 
     public static function getEvents()
@@ -16,7 +16,8 @@ class Events
 
         $today = date('Y-m-d');
  
-        $json_link = 'https://graph.facebook.com/v2.8/' . $fb_page_id . '/events/?fields=' . $fields . '&access_token=' . $access_token .'&since=' . $today .'';
+        //$json_link = 'https://graph.facebook.com/v2.8/' . $fb_page_id . '/events/?fields=' . $fields . '&access_token=' . $access_token .'&since=' . $today .'';
+        $json_link = 'https://graph.facebook.com/v2.8/' . $fb_page_id . '/events/?fields=' . $fields . '&access_token=' . $access_token;
          
         $json = file_get_contents($json_link);
 

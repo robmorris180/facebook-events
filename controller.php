@@ -13,7 +13,7 @@ class Controller extends Package
 
     protected $pkgHandle = 'rwm_facebook_events';
     protected $appVersionRequired = '5.7.5.2';
-    protected $pkgVersion = '1.0.4';
+    protected $pkgVersion = '1.0.9';
 
     public function getPackageDescription() 
     {
@@ -50,8 +50,9 @@ class Controller extends Package
             $page->update(array('cName' => t('Settings'), 'cDescription' => t("Settings")));
         } else throw new Exception(t('Error: /dashboard/facebook_events/settings page not created'));
 
-
-        Job::installByPackage('events', $pkg);
+        if(!Job::getByHandle('events')){
+            Job::installByPackage('events', $pkg);
+        }
     }
 
 }
