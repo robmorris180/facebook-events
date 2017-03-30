@@ -37,7 +37,7 @@ class Event
 
     public function getId()
     {
-        $this->id = $id;
+        return $this->id;
     }
 
     public function setId($id)
@@ -75,17 +75,28 @@ class Event
         $this->event_cover = trim($cover);
     }
 
-    public static function getByID($id) {
+    public static function getByID($id) 
+    {
         $db = Database::connection();
         $em = $db->getEntityManager();
-        return $em->find('Concrete\Package\RwmFacebookEvents\Src\FacebookEvents\Event\Event', $id);
+        $event = $em->find('Concrete\Package\RwmFacebookEvents\Src\FacebookEvents\Event\Event', $id);
+
+        if ($event && $event->getId() > 0) {
+            return $event;
+        } else {
+            return false;
+        }
     }
 
     public static function saveEvent($args)
     {
+        $event = self::getByID($args['id']);
 
-        $event = new self();
-        $event->setId($args['id']);
+        if (!$event) {
+            $event = new self();
+            $event->setId($args['id']);
+        }
+        
         $event->setEventTitle($args['title']);
         $event->setEventTime($args['time']);
         $event->setEventCover($args['cover']);
@@ -93,7 +104,6 @@ class Event
         $event->save();
 
         return $event; 
-
     }
 
     public function save()
