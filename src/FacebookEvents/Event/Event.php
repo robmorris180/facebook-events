@@ -88,6 +88,16 @@ class Event
         }
     }
 
+    public static function getAllEvents()
+    {
+
+        $queryBuilder = Database::connection()->getEntityManager()->createQueryBuilder();
+        $queryBuilder->select('e')->from('\Concrete\Package\RwmFacebookEvents\Src\FacebookEvents\Event\Event','e');
+        $queryBuilder->addOrderBy('e.event_time', 'DESC');
+
+        return $queryBuilder->getQuery()->getResult();
+    }
+
     public static function saveEvent($args)
     {
         $event = self::getByID($args['id']);
