@@ -39,4 +39,9 @@
             return $query->select('count(distinct e.id)')->setMaxResults(1)->execute()->fetchColumn();
         }
 
+        public function filterByEventTime($value, $comparison = '>=')
+        {
+            $this->filter('e.event_time', $value, $comparison);
+        }
+
     }
