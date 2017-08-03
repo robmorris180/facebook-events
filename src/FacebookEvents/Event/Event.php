@@ -46,7 +46,7 @@ class Event
     }
 
     public function getEventTitle()
-    {
+    {   
         return $this->event_title;
     }
 
@@ -55,13 +55,15 @@ class Event
         $this->event_title = trim($title);
     }
 
-    public function getEventTime()
-    {
-        return $this->event_time;
+    public function getEventTime($format = 'Y-m-d H:i:s')
+    {   
+        if ($this->event_time instanceof \DateTime){
+            return $this->event_time->format($format);
+        }
     }
 
     public function setEventTime($time)
-    {
+    {   
         $this->event_time = new \DateTime($time);
     }
 
